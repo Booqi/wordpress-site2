@@ -23,17 +23,17 @@ Use this as a step-by-step execution checklist. Complete top to bottom.
 - [x] Confirm template strategy baseline: hybrid classic PHP + block templates (`templates/*.html`).
 
 ## 1) Theme foundation
-- [ ] Scaffold custom theme structure:
-  - [ ] `style.css`
-  - [ ] `functions.php`
-  - [ ] `theme.json`
-  - [ ] `templates/`
-  - [ ] `template-parts/`
-  - [ ] `assets/css`, `assets/js`, `assets/img`
-- [ ] Add theme supports (title-tag, post-thumbnails, menus, etc.).
-- [ ] Register primary navigation location.
-- [ ] Add base global styles and tokens in `theme.json`.
-- [ ] Configure consistent container/grid utilities.
+- [x] Scaffold custom theme structure:
+  - [x] `style.css`
+  - [x] `functions.php`
+  - [x] `theme.json`
+  - [x] `templates/`
+  - [x] `template-parts/`
+  - [x] `assets/css`, `assets/js`, `assets/img`
+- [x] Add theme supports (title-tag, post-thumbnails, menus, etc.).
+- [x] Register primary navigation location.
+- [x] Add base global styles and tokens in `theme.json`.
+- [x] Configure consistent container/grid utilities.
 
 ## 2) Global layout unification
 - [ ] Build one shared `header` template part.

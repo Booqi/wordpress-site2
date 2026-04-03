@@ -1,0 +1,13 @@
+/*
+Theme Name: WP Site2 Migration Theme
+Theme URI: https://example.com/wp-site2
+Author: Migration Team
+Description: Lightweight custom theme scaffold for React-to-WordPress migration.
+Version: 0.1.0
+Requires at least: 6.5
+Tested up to: 6.6
+Requires PHP: 8.1
+Text Domain: wp-site2
+*/
+
+/* Base stylesheet placeholder. Shared rules are loaded from assets/css/utilities.css. */

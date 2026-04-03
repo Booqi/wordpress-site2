@@ -1,0 +1,26 @@
+:root {
+	--wp-site2-container-max: 1160px;
+	--wp-site2-container-padding: 1rem;
+}
+
+.wp-site2-container {
+	box-sizing: border-box;
+	width: min(100%, var(--wp-site2-container-max));
+	margin-inline: auto;
+	padding-inline: var(--wp-site2-container-padding);
+}
+
+.wp-site2-grid {
+	display: grid;
+	gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+	.wp-site2-grid--2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.wp-site2-grid--3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
