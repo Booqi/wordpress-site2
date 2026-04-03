@@ -3,22 +3,24 @@
 Use this as a step-by-step execution checklist. Complete top to bottom.
 
 ## 0) Project setup and alignment
-- [ ] Create a working branch for migration work.
-- [ ] Unzip all page packages into `reference-pages/`.
-- [ ] Verify available pages and assets:
-  - [ ] homepage
-  - [ ] about-us
-  - [ ] contact
-  - [ ] features
-  - [ ] industry-detail
-  - [ ] case-study-detail
-  - [ ] blog-overview
-- [ ] Create a page-to-template mapping document (`docs/page-map.md`).
-- [ ] Confirm content modeling decision:
-  - [ ] `blog` CPT (recommended) or native `post`
-  - [ ] `case_study` CPT
-- [ ] Confirm multilingual locales and naming:
-  - [ ] EN (default), NL, DE, FR, ES
+- [x] Create a working branch for migration work.
+- [x] Unzip all page packages into `reference-pages/`.
+- [x] Verify available pages and assets:
+  - [x] homepage
+  - [x] about-us
+  - [x] contact
+  - [x] features
+  - [x] industry-detail
+  - [x] case-study-detail
+  - [x] blog-overview
+- [x] Create a page-to-template mapping document (`docs/page-map.md`).
+- [x] Confirm content modeling decision:
+  - [x] `blog` CPT (recommended) (selected)
+  - [x] `case_study` CPT
+  - [x] `industry` CPT for industry-detail
+- [x] Confirm multilingual locales and naming:
+  - [x] EN (default), NL, DE, FR, ES
+- [x] Confirm template strategy baseline: hybrid classic PHP + block templates (`templates/*.html`).
 
 ## 1) Theme foundation
 - [ ] Scaffold custom theme structure:

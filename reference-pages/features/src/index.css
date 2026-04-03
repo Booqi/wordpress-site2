@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-surface: #131313;
+  --color-surface-low: #1b1b1b;
+  --color-surface-high: #2a2a2a;
+  --color-surface-highest: #353535;
+  
+  --color-primary: #4df2c9;
+  --color-primary-container: #1ad5ae;
+  --color-on-primary: #00382c;
+  
+  --color-on-surface: #e2e2e2;
+  --color-on-surface-variant: #bacac3;
+  
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1.5rem;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-sans selection:bg-primary/30;
+  }
+}
+
+.glass-card {
+  background: rgba(27, 27, 27, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(77, 242, 201, 0.1);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #4df2c9 0%, #1ad5ae 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pulse-bg {
+  position: absolute;
+  pointer-events: none;
+  filter: blur(120px);
+  opacity: 0.2;
+  border-radius: 9999px;
+}
