@@ -43,13 +43,13 @@ Use this as a step-by-step execution checklist. Complete top to bottom.
 - [x] Add language switcher slot in header (for future Polylang integration).
 
 ## 3) Content model and routing
-- [ ] Register `blog` content type (or confirm native posts alternative).
-- [ ] Register `case_study` content type.
-- [ ] Register needed taxonomies:
-  - [ ] categories and/or tags for blog
-  - [ ] categories and/or tags for case studies
-- [ ] Configure permalink slugs and archive behavior.
-- [ ] Add CPT labels and admin menu icons.
+- [x] Register `blog` content type (or confirm native posts alternative).
+- [x] Register `case_study` content type.
+- [x] Register needed taxonomies:
+  - [x] categories and/or tags for blog
+  - [x] categories and/or tags for case studies
+- [x] Configure permalink slugs and archive behavior.
+- [x] Add CPT labels and admin menu icons.
 
 ## 4) Template implementation
 - [ ] Build/convert core templates:
