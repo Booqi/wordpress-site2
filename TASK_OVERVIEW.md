@@ -67,15 +67,15 @@ Use this as a step-by-step execution checklist. Complete top to bottom.
 - [x] Add fallback/empty-state templates for archives.
 
 ## 5) Reusable blocks and editor experience
-- [ ] Define allowed core block set.
-- [ ] Create reusable block patterns:
-  - [ ] Hero
-  - [ ] Feature grid
-  - [ ] CTA section
-  - [ ] Testimonial section
-  - [ ] Related content block
-- [ ] Add editor style parity for backend preview.
-- [ ] Document when custom blocks are allowed (only for true gaps).
+- [x] Define allowed core block set.
+- [x] Create reusable block patterns:
+  - [x] Hero
+  - [x] Feature grid
+  - [x] CTA section
+  - [x] Testimonial section
+  - [x] Related content block
+- [x] Add editor style parity for backend preview.
+- [x] Document when custom blocks are allowed (only for true gaps).
 
 ## 6) Multilingual setup (Polylang)
 - [ ] Install and activate Polylang.
