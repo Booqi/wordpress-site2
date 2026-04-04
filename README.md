@@ -61,6 +61,7 @@ These serve as visual/structural references for the WordPress theme conversion.
 - `PROJECT_BRIEF.md`: High-level project brief, scope, and milestones.
 - `TASK_OVERVIEW.md`: Step-by-step execution checklist to run the migration one task at a time.
 - `AGENTS.md`: Collaboration and implementation rules for contributors/agents.
+- `docs/editor-guidelines.md`: Allowed block list, reusable pattern inventory, and custom-block decision criteria.
 
 ---
 If you want, the next step can be a concrete technical scaffold proposal (folders, templates, CPT registration approach, and rollout checklist).

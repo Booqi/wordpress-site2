@@ -24,6 +24,8 @@ function wp_site2_theme_setup() {
 	add_theme_support( 'responsive-embeds' );
 	add_theme_support( 'align-wide' );
 
+	add_editor_style( 'assets/css/editor.css' );
+
 	register_nav_menus(
 		array(
 			'primary' => __( 'Primary Navigation', 'wp-site2' ),
@@ -53,6 +55,228 @@ function wp_site2_enqueue_assets() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'wp_site2_enqueue_assets' );
+
+/**
+ * Restrict editor blocks to a curated core set.
+ *
+ * @return array<string>
+ */
+function wp_site2_allowed_block_types() {
+	return array(
+		'core/paragraph',
+		'core/heading',
+		'core/list',
+		'core/quote',
+		'core/image',
+		'core/gallery',
+		'core/buttons',
+		'core/button',
+		'core/columns',
+		'core/column',
+		'core/group',
+		'core/separator',
+		'core/spacer',
+		'core/cover',
+		'core/media-text',
+		'core/pullquote',
+		'core/table',
+		'core/file',
+		'core/embed',
+		'core/video',
+		'core/site-logo',
+		'core/site-title',
+		'core/site-tagline',
+		'core/navigation',
+		'core/post-title',
+		'core/post-featured-image',
+		'core/post-excerpt',
+		'core/post-content',
+		'core/post-date',
+		'core/query',
+		'core/query-title',
+		'core/query-no-results',
+		'core/post-template',
+		'core/pagination',
+		'core/pagination-previous',
+		'core/pagination-next',
+		'core/pagination-numbers',
+		'core/template-part',
+		'core/social-links',
+		'core/social-link',
+		'core/html',
+		'core/shortcode',
+	);
+}
+
+/**
+ * Apply curated block allow-list across the editor.
+ *
+ * @param bool|array $allowed_block_types Allowed block types.
+ * @return array<string>
+ */
+function wp_site2_filter_allowed_block_types( $allowed_block_types ) {
+	unset( $allowed_block_types );
+	return wp_site2_allowed_block_types();
+}
+add_filter( 'allowed_block_types_all', 'wp_site2_filter_allowed_block_types' );
+
+/**
+ * Register reusable pattern category and block patterns.
+ */
+function wp_site2_register_block_patterns() {
+	if ( ! function_exists( 'register_block_pattern_category' ) || ! function_exists( 'register_block_pattern' ) ) {
+		return;
+	}
+
+	register_block_pattern_category(
+		'wp-site2-sections',
+		array(
+			'label' => __( 'WP Site2 Sections', 'wp-site2' ),
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/hero',
+		array(
+			'title'       => __( 'Hero Section', 'wp-site2' ),
+			'categories'  => array( 'wp-site2-sections' ),
+			'description' => __( 'Introductory hero section with headline, supporting text, and primary call to action.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"align":"wide","className":"wp-site2-pattern-hero","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide wp-site2-pattern-hero"><!-- wp:heading {"level":1} -->
+<h1>' . esc_html__( 'Build conversion-ready pages faster', 'wp-site2' ) . '</h1>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>' . esc_html__( 'Use this section at the top of a page to summarize the value proposition and direct visitors to the next step.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">' . esc_html__( 'Get Started', 'wp-site2' ) . '</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/feature-grid',
+		array(
+			'title'       => __( 'Feature Grid', 'wp-site2' ),
+			'categories'  => array( 'wp-site2-sections' ),
+			'description' => __( 'Three-column feature grid for concise value points.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"align":"wide","className":"wp-site2-pattern-feature-grid","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide wp-site2-pattern-feature-grid"><!-- wp:heading {"textAlign":"center","level":2} -->
+<h2 class="has-text-align-center">' . esc_html__( 'Key Features', 'wp-site2' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column --><div class="wp-block-column"><!-- wp:heading {"level":3} -->
+<h3>' . esc_html__( 'Fast Setup', 'wp-site2' ) . '</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>' . esc_html__( 'Launch quickly using reusable sections and preconfigured styles.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph --></div><!-- /wp:column -->
+
+<!-- wp:column --><div class="wp-block-column"><!-- wp:heading {"level":3} -->
+<h3>' . esc_html__( 'Editorial Friendly', 'wp-site2' ) . '</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>' . esc_html__( 'Provide a focused block set to keep authoring simple and consistent.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph --></div><!-- /wp:column -->
+
+<!-- wp:column --><div class="wp-block-column"><!-- wp:heading {"level":3} -->
+<h3>' . esc_html__( 'Performance First', 'wp-site2' ) . '</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>' . esc_html__( 'Keep frontend output lean with native blocks and minimal JavaScript.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph --></div><!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/cta-section',
+		array(
+			'title'       => __( 'CTA Section', 'wp-site2' ),
+			'categories'  => array( 'wp-site2-sections' ),
+			'description' => __( 'Prominent call-to-action section for conversion moments.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"align":"wide","className":"wp-site2-pattern-cta","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide wp-site2-pattern-cta"><!-- wp:heading {"textAlign":"center","level":2} -->
+<h2 class="has-text-align-center">' . esc_html__( 'Ready to plan your next project?', 'wp-site2' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">' . esc_html__( 'Use this section near the end of a page to guide readers toward contact or demo actions.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">' . esc_html__( 'Contact Us', 'wp-site2' ) . '</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/testimonial-section',
+		array(
+			'title'       => __( 'Testimonial Section', 'wp-site2' ),
+			'categories'  => array( 'wp-site2-sections' ),
+			'description' => __( 'Single testimonial section with quote and attribution.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"align":"wide","className":"wp-site2-pattern-testimonial","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide wp-site2-pattern-testimonial"><!-- wp:heading {"textAlign":"center","level":2} -->
+<h2 class="has-text-align-center">' . esc_html__( 'What clients say', 'wp-site2' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><p>' . esc_html__( 'The migration delivered a much faster and easier-to-manage website without compromising design quality.', 'wp-site2' ) . '</p><cite>' . esc_html__( 'Head of Marketing, Example Co.', 'wp-site2' ) . '</cite></blockquote>
+<!-- /wp:quote --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/related-content',
+		array(
+			'title'       => __( 'Related Content', 'wp-site2' ),
+			'categories'  => array( 'wp-site2-sections' ),
+			'description' => __( 'Related content list for Blog and Case Study templates.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"align":"wide","className":"wp-site2-pattern-related-content","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide wp-site2-pattern-related-content"><!-- wp:heading {"level":2} -->
+<h2>' . esc_html__( 'Related Content', 'wp-site2' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:query {"query":{"perPage":3,"pages":0,"offset":0,"postType":"blog","order":"desc","orderBy":"date"}} -->
+<div class="wp-block-query"><!-- wp:post-template -->
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:post-title {"isLink":true,"level":3} /-->
+
+<!-- wp:post-excerpt /--></div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>' . esc_html__( 'No related content found.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></div>
+<!-- /wp:group -->',
+		)
+	);
+}
+add_action( 'init', 'wp_site2_register_block_patterns' );
 
 /**
  * Register content models for migration collections.
