@@ -53,6 +53,13 @@ function wp_site2_enqueue_assets() {
 		array( 'wp-site2-style' ),
 		$theme_version
 	);
+
+	wp_enqueue_style(
+		'wp-site2-homepage-template',
+		get_template_directory_uri() . '/assets/css/homepage-template.css',
+		array( 'wp-site2-utilities' ),
+		$theme_version
+	);
 }
 add_action( 'wp_enqueue_scripts', 'wp_site2_enqueue_assets' );
 
@@ -491,3 +498,255 @@ function wp_site2_render_language_slot_placeholder() {
 	echo '<span class="wp-site2-language-placeholder">' . esc_html__( 'Language', 'wp-site2' ) . '</span>';
 }
 add_action( 'wp_site2_language_switcher', 'wp_site2_render_language_slot_placeholder' );
+
+
+/**
+ * Register homepage migration section patterns.
+ */
+function wp_site2_register_homepage_section_patterns() {
+	if ( ! function_exists( 'register_block_pattern' ) ) {
+		return;
+	}
+
+	$category = 'wp-site2-sections';
+
+	register_block_pattern(
+		'wp-site2/home-hero',
+		array(
+			'title'       => __( 'Homepage: Hero', 'wp-site2' ),
+			'categories'  => array( $category ),
+			'description' => __( 'Hero section with title, supporting copy, and two CTAs.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"className":"wp-site2-home-section wp-site2-home-hero","layout":{"type":"constrained"}} -->
+<div class="wp-block-group wp-site2-home-section wp-site2-home-hero"><!-- wp:paragraph {"className":"wp-site2-home-kicker"} -->
+<p class="wp-site2-home-kicker">' . esc_html__( 'The Future of Ticketing', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":1} -->
+<h1>' . esc_html__( 'Enhance your ticketing experience', 'wp-site2' ) . '</h1>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>' . esc_html__( 'Streamline operations, boost sales, and provide a seamless guest journey with one all-in-one platform.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">' . esc_html__( 'Request demo', 'wp-site2' ) . '</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button">' . esc_html__( 'View features', 'wp-site2' ) . '</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/home-social-proof',
+		array(
+			'title'       => __( 'Homepage: Social Proof', 'wp-site2' ),
+			'categories'  => array( $category ),
+			'description' => __( 'Partner logo strip used under hero.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"className":"wp-site2-home-section wp-site2-home-social-proof is-dark","layout":{"type":"constrained"}} -->
+<div class="wp-block-group wp-site2-home-section wp-site2-home-social-proof is-dark"><!-- wp:paragraph {"align":"center","className":"wp-site2-home-kicker"} -->
+<p class="has-text-align-center wp-site2-home-kicker">' . esc_html__( 'Trusted by innovative teams worldwide', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">ZOO · Soccer City · Museum · Park Inc. · Booqi Pro</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/home-features',
+		array(
+			'title'       => __( 'Homepage: Features', 'wp-site2' ),
+			'categories'  => array( $category ),
+			'description' => __( 'Feature grid with four product capabilities.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"className":"wp-site2-home-section wp-site2-home-features","layout":{"type":"constrained"}} -->
+<div class="wp-block-group wp-site2-home-section wp-site2-home-features"><!-- wp:heading {"level":2} -->
+<h2>' . esc_html__( 'We have got what it takes!', 'wp-site2' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"wp-site2-home-card"} -->
+<div class="wp-block-group wp-site2-home-card"><!-- wp:heading {"level":3} -->
+<h3>' . esc_html__( 'Smart Ticketing Engine', 'wp-site2' ) . '</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>' . esc_html__( 'Dynamic pricing, time-slot management, and real-time inventory control.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div><!-- /wp:column -->
+
+<!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"wp-site2-home-card"} -->
+<div class="wp-block-group wp-site2-home-card"><!-- wp:heading {"level":3} -->
+<h3>' . esc_html__( 'Deep Analytics', 'wp-site2' ) . '</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>' . esc_html__( 'Understand your audience with behavioral insights and forecasting tools.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div><!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"wp-site2-home-card"} -->
+<div class="wp-block-group wp-site2-home-card"><!-- wp:heading {"level":3} -->
+<h3>' . esc_html__( 'Member Portals', 'wp-site2' ) . '</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>' . esc_html__( 'Built-in loyalty programs and membership management.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div><!-- /wp:column -->
+
+<!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"wp-site2-home-card"} -->
+<div class="wp-block-group wp-site2-home-card"><!-- wp:heading {"level":3} -->
+<h3>' . esc_html__( 'Tool Integrations', 'wp-site2' ) . '</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>' . esc_html__( 'Connect your CRM, marketing, and finance stack with ease.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div><!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/home-hardware-integration',
+		array(
+			'title'       => __( 'Homepage: Hardware Integration', 'wp-site2' ),
+			'categories'  => array( $category ),
+			'description' => __( 'Section focused on hardware connectivity and compatibility.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"className":"wp-site2-home-section wp-site2-home-hardware is-dark","layout":{"type":"constrained"}} -->
+<div class="wp-block-group wp-site2-home-section wp-site2-home-hardware is-dark"><!-- wp:paragraph {"className":"wp-site2-home-kicker"} -->
+<p class="wp-site2-home-kicker">' . esc_html__( 'Universal Compatibility', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2} -->
+<h2>' . esc_html__( 'Integrate your hardware with ease', 'wp-site2' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul><li>' . esc_html__( 'Support for major turnstile protocols.', 'wp-site2' ) . '</li><li>' . esc_html__( 'Offline-first mobile scanning.', 'wp-site2' ) . '</li><li>' . esc_html__( 'RFID and NFC wristband support.', 'wp-site2' ) . '</li></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/home-industries',
+		array(
+			'title'       => __( 'Homepage: Industries', 'wp-site2' ),
+			'categories'  => array( $category ),
+			'description' => __( 'Industry cards for audience verticals.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"className":"wp-site2-home-section wp-site2-home-industries","layout":{"type":"constrained"}} -->
+<div class="wp-block-group wp-site2-home-section wp-site2-home-industries"><!-- wp:heading {"textAlign":"center","level":2} -->
+<h2 class="has-text-align-center">' . esc_html__( 'The right solution for your business', 'wp-site2' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"wp-site2-home-card"} --><div class="wp-block-group wp-site2-home-card"><!-- wp:heading {"level":3} --><h3>' . esc_html__( 'Theme Parks', 'wp-site2' ) . '</h3><!-- /wp:heading --><!-- wp:paragraph --><p>' . esc_html__( 'Fast-track queuing and high-volume entry.', 'wp-site2' ) . '</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:column -->
+<!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"wp-site2-home-card"} --><div class="wp-block-group wp-site2-home-card"><!-- wp:heading {"level":3} --><h3>' . esc_html__( 'Zoos', 'wp-site2' ) . '</h3><!-- /wp:heading --><!-- wp:paragraph --><p>' . esc_html__( 'Education session bookings and donations.', 'wp-site2' ) . '</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:column -->
+<!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"wp-site2-home-card"} --><div class="wp-block-group wp-site2-home-card"><!-- wp:heading {"level":3} --><h3>' . esc_html__( 'Museums', 'wp-site2' ) . '</h3><!-- /wp:heading --><!-- wp:paragraph --><p>' . esc_html__( 'Timed-entry exhibitions and guide rentals.', 'wp-site2' ) . '</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/home-sales-focus',
+		array(
+			'title'       => __( 'Homepage: Sales Focus', 'wp-site2' ),
+			'categories'  => array( $category ),
+			'description' => __( 'Sales-focused section with reliability stats.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"className":"wp-site2-home-section wp-site2-home-sales-focus is-dark","layout":{"type":"constrained"}} -->
+<div class="wp-block-group wp-site2-home-section wp-site2-home-sales-focus is-dark"><!-- wp:heading {"textAlign":"center","level":2} -->
+<h2 class="has-text-align-center">' . esc_html__( 'Focus on your sales', 'wp-site2' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column --><div class="wp-block-column"><!-- wp:heading {"textAlign":"center","level":3} --><h3 class="has-text-align-center">99.9%</h3><!-- /wp:heading --><!-- wp:paragraph {"align":"center"} --><p class="has-text-align-center">' . esc_html__( 'Uptime guarantee', 'wp-site2' ) . '</p><!-- /wp:paragraph --></div><!-- /wp:column -->
+<!-- wp:column --><div class="wp-block-column"><!-- wp:heading {"textAlign":"center","level":3} --><h3 class="has-text-align-center">&lt;200ms</h3><!-- /wp:heading --><!-- wp:paragraph {"align":"center"} --><p class="has-text-align-center">' . esc_html__( 'Average latency', 'wp-site2' ) . '</p><!-- /wp:paragraph --></div><!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/home-pricing',
+		array(
+			'title'       => __( 'Homepage: Pricing', 'wp-site2' ),
+			'categories'  => array( $category ),
+			'description' => __( 'Starter and Pro pricing cards.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"className":"wp-site2-home-section wp-site2-home-pricing","layout":{"type":"constrained"}} -->
+<div class="wp-block-group wp-site2-home-section wp-site2-home-pricing"><!-- wp:heading {"textAlign":"center","level":2} -->
+<h2 class="has-text-align-center">' . esc_html__( 'Simple, transparent pricing', 'wp-site2' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"wp-site2-home-card"} --><div class="wp-block-group wp-site2-home-card"><!-- wp:heading {"level":3} --><h3>' . esc_html__( 'Starter', 'wp-site2' ) . '</h3><!-- /wp:heading --><!-- wp:paragraph --><p>' . esc_html__( 'Free — Up to 500 tickets/month, basic analytics, and standard scanning.', 'wp-site2' ) . '</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:column -->
+<!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"wp-site2-home-card"} --><div class="wp-block-group wp-site2-home-card"><!-- wp:heading {"level":3} --><h3>' . esc_html__( 'Pro', 'wp-site2' ) . '</h3><!-- /wp:heading --><!-- wp:paragraph --><p>' . esc_html__( 'Custom — Unlimited ticketing, integrations, and priority support.', 'wp-site2' ) . '</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/home-faq',
+		array(
+			'title'       => __( 'Homepage: FAQ', 'wp-site2' ),
+			'categories'  => array( $category ),
+			'description' => __( 'Frequently asked questions section.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"className":"wp-site2-home-section wp-site2-home-faq is-dark","layout":{"type":"constrained"}} -->
+<div class="wp-block-group wp-site2-home-section wp-site2-home-faq is-dark"><!-- wp:heading {"textAlign":"center","level":2} -->
+<h2 class="has-text-align-center">' . esc_html__( 'We have all the answers', 'wp-site2' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul><li><strong>' . esc_html__( 'How fast can we go live?', 'wp-site2' ) . '</strong> ' . esc_html__( 'Typical onboarding takes 3 to 14 days depending on hardware complexity.', 'wp-site2' ) . '</li><li><strong>' . esc_html__( 'Do you support offline scanning?', 'wp-site2' ) . '</strong> ' . esc_html__( 'Yes, with automatic sync when the connection returns.', 'wp-site2' ) . '</li><li><strong>' . esc_html__( 'Can we integrate our CRM?', 'wp-site2' ) . '</strong> ' . esc_html__( 'Yes, via API and connector options.', 'wp-site2' ) . '</li></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->',
+		)
+	);
+
+	register_block_pattern(
+		'wp-site2/home-final-cta',
+		array(
+			'title'       => __( 'Homepage: Final CTA', 'wp-site2' ),
+			'categories'  => array( $category ),
+			'description' => __( 'End-of-page conversion call to action.', 'wp-site2' ),
+			'content'     =>
+				'<!-- wp:group {"className":"wp-site2-home-section wp-site2-home-final-cta","layout":{"type":"constrained"}} -->
+<div class="wp-block-group wp-site2-home-section wp-site2-home-final-cta"><!-- wp:heading {"textAlign":"center","level":2} -->
+<h2 class="has-text-align-center">' . esc_html__( 'Take the Next Step with Booqi', 'wp-site2' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">' . esc_html__( 'Ready to revolutionize your visitor experience? Let us build the future together.', 'wp-site2' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">' . esc_html__( 'Request demo', 'wp-site2' ) . '</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->',
+		)
+	);
+}
+add_action( 'init', 'wp_site2_register_homepage_section_patterns', 20 );

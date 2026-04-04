@@ -1,0 +1,35 @@
+.wp-site2-homepage-template {
+	padding-block: 4rem;
+}
+
+.wp-site2-homepage-template .wp-site2-home-section {
+	margin-inline: auto;
+	max-width: 1100px;
+	padding: 3rem 1.5rem;
+}
+
+.wp-site2-homepage-template .wp-site2-home-section.is-dark {
+	background: #151515;
+	border-radius: 1.5rem;
+}
+
+.wp-site2-homepage-template .wp-site2-home-kicker {
+	color: #4df2c9;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.wp-site2-homepage-template .wp-site2-home-grid-2 {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.wp-site2-homepage-template .wp-site2-home-card {
+	background: #1f1f1f;
+	border: 1px solid #2f2f2f;
+	border-radius: 1rem;
+	padding: 1.25rem;
+}
