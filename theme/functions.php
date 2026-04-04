@@ -53,3 +53,21 @@ function wp_site2_enqueue_assets() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'wp_site2_enqueue_assets' );
+
+/**
+ * Render a placeholder language switcher slot until Polylang integration is added.
+ */
+function wp_site2_render_language_slot_placeholder() {
+	if ( function_exists( 'pll_the_languages' ) ) {
+		pll_the_languages(
+			array(
+				'dropdown'   => 0,
+				'show_names' => 1,
+			)
+		);
+		return;
+	}
+
+	echo '<span class="wp-site2-language-placeholder">' . esc_html__( 'Language', 'wp-site2' ) . '</span>';
+}
+add_action( 'wp_site2_language_switcher', 'wp_site2_render_language_slot_placeholder' );

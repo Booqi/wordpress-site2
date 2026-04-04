@@ -36,11 +36,11 @@ Use this as a step-by-step execution checklist. Complete top to bottom.
 - [x] Configure consistent container/grid utilities.
 
 ## 2) Global layout unification
-- [ ] Build one shared `header` template part.
-- [ ] Build one shared `footer` template part.
-- [ ] Remove per-page header/footer logic from migrated templates.
-- [ ] Ensure header/footer are included in all page templates.
-- [ ] Add language switcher slot in header (for future Polylang integration).
+- [x] Build one shared `header` template part.
+- [x] Build one shared `footer` template part.
+- [x] Remove per-page header/footer logic from migrated templates.
+- [x] Ensure header/footer are included in all page templates.
+- [x] Add language switcher slot in header (for future Polylang integration).
 
 ## 3) Content model and routing
 - [ ] Register `blog` content type (or confirm native posts alternative).
